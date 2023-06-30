@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        input {
+            display: none;
+        }
+        li {
+            list-style: none;
+        }
+        a {
+            text-decoration: none;
+            color: #111;
+            line-height: 30px;
+        }
+        #btn1:checked ~ #tab1{
+            display: block;
+        }
+        #btn2:checked ~ #tab2{
+            display: block;
+        }
+        #btn3:checked ~ #tab3{
+            display: block;
+        }
+        .tabs {
+            border: 1px solid #111;
+            width: 400px;
+            height: 200px;
+            background: #999;
+        }
+        .tabs > div {
+            display: none;
+        }
+        .tabs label {
+            padding: 4px 16px;
+            color: #fff;
+            cursor: pointer;
+        }
+        
+        
+        
+    </style>
+</head>
+<body>
+    <div class="tabs">
+        <input type="radio" name="tabs" id="btn1" checked>
+        <label for="btn1">공지사항</label>
+        <input type="radio" name="tabs" id="btn2">
+        <label for="btn2">공지사항2</label>
+        <input type="radio" name="tabs" id="btn3">
+        <label for="btn3">공지사항3</label>
+
+        <div id="tab1">
+            <ul>
+                <li><a href="#">공지사항입니다1</a></li>
+                <li><a href="#">공지사항입니다2</a></li>
+                <li><a href="#">공지사항입니다3</a></li>
+                <li><a href="#">공지사항입니다4</a></li>
+            </ul>        
+        </div>
+        <div id="tab2">
+            <ul>
+                <li><a href="#">공지사항입니다5</a></li>
+                <li><a href="#">공지사항입니다6</a></li>
+                <li><a href="#">공지사항입니다7</a></li>
+                <li><a href="#">공지사항입니다8</a></li>
+            </ul>        
+        </div>
+        <div id="tab3">
+            <ul>
+                <li><a href="#">공지사항입니다9</a></li>
+                <li><a href="#">공지사항입니다10</a></li>
+                <li><a href="#">공지사항입니다11</a></li>
+                <li><a href="#">공지사항입니다12</a></li>
+            </ul>        
+        </div>
+    </div>
+</body>
+</html>

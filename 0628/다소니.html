@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #fff;
+            overflow-x: hidden;
+        }
+
+        section {
+            position: relative;
+            background-color: #fff;
+            width: 1920px;
+            height: 840px;
+            margin: 0 auto;
+        }
+
+        .slide {
+            width: 100%;
+            height: 840px;
+            position: absolute;
+            transition: all 4s;
+        }
+
+        .page1 {
+            background-image: url(images/main1.jpg);
+            background-repeat: no-repeat;
+            opacity: 0;
+        }
+
+        .page2 {
+            background-image: url(images/main2.jpg);
+            background-repeat: no-repeat;
+            opacity: 0;
+        }
+
+        .fade {
+            opacity: 1;
+            z-index: 1;
+        }
+
+        .text_wrap {
+            width: 1000px;
+            height: 840px;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .text {
+            width: 620px;
+            height: 312px;
+            border: 2px solid #000;
+            position: absolute;
+            top: 48%;
+            left: 50%;
+            background-color: rgba(255, 255, 255, 0.8);
+            transform: translate(-50%, -50%);
+        }
+
+        .text>div {
+            position: absolute;
+            transform: translateX(-50%);
+            font-weight: bold;
+            font-size: 20px;
+            width: 100%;
+            top: 40%;
+            left: 50%;
+            text-align: center;
+            opacity: 0;
+        }
+
+        .text_move {
+            top: 22% !important;
+            opacity: 1 !important;
+            transition-delay: 1.5s !important;
+            transition: 2s;
+        }
+
+        .text>div p:nth-of-type(1) {
+            margin-bottom: 128px;
+        }
+
+        .text h2 {
+            text-align: center;
+            font-size: 40px;
+            margin-top: 200px;
+            z-index: 2;
+            opacity: 0;
+        }
+
+        .title_move {
+            margin-top: 100px !important;
+            transition: 2s;
+            transition-delay: .5s;
+            opacity: 1 !important;
+        }
+
+        .btn_wrap {
+            width: 1000px;
+            display: flex;
+            justify-content: space-between;
+            position: absolute;
+            top: 46%;
+            left: 24%;
+            transform: translateX(-50%);
+            transform: translateY(-50%);
+            z-index: 999;
+        }
+
+        .btn {
+            width: 70px;
+            height: 70px;
+            border: 1px solid #000;
+            border-radius: 50%;
+            text-align: center;
+            padding-top: 16px;
+            cursor: pointer;
+        }
+
+        .btn img {
+            width: 20px;
+        }
+
+        .block {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            cursor: pointer;
+            position: absolute;
+            top: 0;
+            background-color: transparent;
+            display: none;
+        }
+
+        .b2 {
+            right: 0;
+        }
+
+        .page2 .text div p:nth-of-type(1) {
+            margin-bottom: 80px;
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <div class="btn_wrap">
+            <div class="block b1"></div>
+            <div class="btn btn_left">
+                <img src="images/prev.png" alt="prev">
+            </div>
+            <div class="block b2"></div>
+            <div class="btn btn_right">
+                <img src="images/next.png" alt="prev">
+            </div>
+        </div>
+        <div class="slide page1 fade">
+            <div class="text_wrap">
+                <div>
+
+                    <div class="text">
+                        <div>
+                            <p>언택트시대 필수 과정</p>
+                            <p>이제 당신의 공간에서 전문 상담사를 만나보세요</p>
+                        </div>
+                        <h2>비대면 상담 <br>
+                            비대면 검사
+                        </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide page2">
+            <div class="text_wrap">
+                <div>
+                    <div class="text">
+                        <div>
+                            <p>가격부담 Down x 치료기대효과 Up</p>
+                            <p>검사와 상담이 모두 필요한 여러분에게 딱 !</p>
+                        </div>
+                        <h2>다소니 관계 테라피 </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        const page = document.querySelectorAll(".slide"),
+            left_btn = document.querySelector(".btn_left"),
+            right_btn = document.querySelector(".btn_right"),
+            block_btn = document.querySelectorAll(".block"),
+            title = document.querySelectorAll(".text h2"),
+            text = document.querySelectorAll(".text>div");
+        let fade_page = 1;
+
+        function click_block(btn_num) {
+            block_btn[btn_num].style.display = "block";
+            setTimeout(function () {
+                block_btn[btn_num].style.display = "none";
+            }, 4000);
+        }
+        function class_control(remove, add) {
+            page[add].classList.add("fade");
+            page[remove].classList.remove("fade");
+        }
+        function text_ani(text_num) {
+            title[text_num].classList.add("title_move");
+            text[text_num].classList.add("text_move");
+        }
+        function text_reset(reset_num) {
+            title[reset_num].classList.remove("title_move");
+            text[reset_num].classList.remove("text_move");
+        }
+        function page_move() {
+            text_reset(0);
+            text_reset(1);
+            if (fade_page == 1) {
+                class_control(0, 1);
+                text_ani(1);
+                fade_page = 0;
+            } else {
+                class_control(1, 0);
+                text_ani(0);
+                fade_page = 1;
+            }
+        }
+        right_btn.onclick = function () {
+            page_move();
+            click_block(1);
+        }
+
+        left_btn.onclick = function () {
+            page_move();
+            click_block(0)
+        }
+        window.onload = function () {
+            text_ani(0);
+        }
+    </script>
+</body>
+
+</html>
